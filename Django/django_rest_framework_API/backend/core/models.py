@@ -8,13 +8,10 @@ from django_extensions.db.models import (
 
 class Contact(
 	TimeStampedModel, 
-	ActivatorModel,
-	TitleDescriptionModel,
-	Model
+	# ActivatorModel,
+	# TitleDescriptionModel,
+	Model,models.Model
 	):
-
-	class Meta:
-		verbose_name_plural = "Contacts"
 
 	email = models.EmailField(verbose_name="Email")
 
