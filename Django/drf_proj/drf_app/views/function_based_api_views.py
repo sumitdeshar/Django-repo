@@ -1,0 +1,58 @@
+from django.shortcuts import render, HttpResponse
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from ..serializer import *
+from ..models import *
+import io
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+# Create your views here.
+
+@api_view(["GET", "POST", "PUT", "DELETE"])
+def StudentAPI(request):
+    
+    if request.method == "GET":
+        pythondata = request.data
+        id = pythondata.get("id", None)
+
+        if id is not None:
+            stu_obj = Student.objects.get(id = id)
+            stu_seri = StudentSerializer(stu_obj)
+            return Response(stu_seri.data)
+
+        stu_obj = Student.objects.all()
+        stu_seri = StudentSerializer(stu_obj, many=True)
+        return Response(stu_seri.data)
+
+    elif request.method == "POST":
+        pythondata = request.data
+        stu_seri = StudentSerializer(stu_obj)
+        if stu_seri.is_valid():
+            stu_seri.save()
+            return Response(stu_seri.data)
+        else:
+            return Response(stu_seri.errors)
+        
+    elif request.method == "PUT":
+        pythondata = request.data
+        id = pythondata.get("id", None)
+        stu_obj = Student.objects.get(id = id)
+        stu_seri = StudentSerializer(stu_obj, data=pythondata)
+        if stu_seri.is_valid():
+            stu_seri.save()
+            return Response(stu_seri.data)
+        else:
+            return Response(stu_seri.errors)
+        
+    elif request.method == 'DELETE':
+        pythondata = request.data
+        id = pythondata.get("id", None)
+        stu_obj = Student.objects.get(id = id)
+        stu_obj.delete()
+        response = {
+            "msg": "your data has beeen deletedddddd...."
+        }
+        return Response(response)
+
