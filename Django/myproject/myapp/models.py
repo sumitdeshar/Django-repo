@@ -9,7 +9,5 @@ class Features(models.Model):
     
 class AllowedIP(models.Model):
     ip_address = models.GenericIPAddressField(null=True)
-    # def __str__(self):
-    #     return self.ip
     
-    
+
