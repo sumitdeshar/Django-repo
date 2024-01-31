@@ -1,5 +1,9 @@
 from django.shortcuts import render, HttpResponse
+<<<<<<< HEAD
 from rest_framework.renderers import JSONRenderer,status
+=======
+from rest_framework.renderers import JSONRenderer
+>>>>>>> c2ad93beaa4d06ddc8d85e16a42d16298a40afc7
 from rest_framework.parsers import JSONParser
 from ..serializer import *
 from ..models import *
@@ -8,7 +12,10 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c2ad93beaa4d06ddc8d85e16a42d16298a40afc7
 # Create your views here.
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
@@ -34,7 +41,11 @@ def StudentAPI(request):
             stu_seri.save()
             return Response(stu_seri.data)
         else:
+<<<<<<< HEAD
             return Response(stu_seri.errors,status=status.HTTP_404_NOT_FOUND)
+=======
+            return Response(stu_seri.errors)
+>>>>>>> c2ad93beaa4d06ddc8d85e16a42d16298a40afc7
         
     elif request.method == "PUT":
         pythondata = request.data

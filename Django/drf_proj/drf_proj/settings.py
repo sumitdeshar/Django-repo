@@ -56,7 +56,11 @@ ROOT_URLCONF = 'drf_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [BASE_DIR, 'templates'],
+=======
+        'DIRS': [],
+>>>>>>> c2ad93beaa4d06ddc8d85e16a42d16298a40afc7
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
